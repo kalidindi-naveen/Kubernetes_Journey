@@ -1,0 +1,12 @@
+# kubectl apply -f 09.secrects.yaml
+# kubectl get secrets
+# kubectl delete -f 09.secrects.yaml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pod-secret
+type: Opaque
+data:
+  username: "YWRtaW4K" #admin
+  password: "YWRtaW4xMjMK" #admin123

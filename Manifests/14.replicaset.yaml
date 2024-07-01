@@ -1,0 +1,33 @@
+# kubectl apply -f 14.replicaset.yaml
+# kubectl get rs
+# kubectl get pods
+# kubectl delete -f 14.replicaset.yaml
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: nginx
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

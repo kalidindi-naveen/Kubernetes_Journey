@@ -1,0 +1,43 @@
+# kubectl apply -f 12.service-nodeport.yaml
+# kubectl get svc -o wide
+# kubectl get pods -o wide
+# open port 32622 in sg
+# Note: NodePort will open 32622 on all Node(EC2)
+# copy any EC2 publicIP:32622 will see nginx home page
+# kubectl delete -f 12.service-nodeport.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    name: nginx
+    owner: nk
+    component: fe
+    environment: dev
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: NodePort
+  selector:
+    name: nginx
+    owner: nk
+    component: fe
+    environment: dev
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 32622

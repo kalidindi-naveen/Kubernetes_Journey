@@ -1,0 +1,11 @@
+# kubectl apply -f 00.namespace.yaml
+# kubectl get ns
+# kubectl delete -f 00.namespace.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expense
+  labels:
+    name: expense
+    env: dev

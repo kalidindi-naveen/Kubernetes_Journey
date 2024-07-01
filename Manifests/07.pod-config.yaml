@@ -1,0 +1,33 @@
+# kubectl apply -f 07.pod-config.yaml
+# kubectl get pods
+# kubectl exec -it config-map-test -- bash
+# kubectl delete -f 07.pod-config.yaml
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-map-test
+  labels:
+    name: config-map-test
+spec:
+  containers:
+  - name: config-map-test
+    image: nginx
+    env:
+    - name: course
+      valueFrom:
+        configMapKeyRef:
+          name: step-into-cloud
+          key: course
+    - name: trainer
+      valueFrom:
+        configMapKeyRef:
+          name: step-into-cloud
+          key: trainer
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80

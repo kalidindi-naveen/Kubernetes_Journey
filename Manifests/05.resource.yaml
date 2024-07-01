@@ -1,0 +1,24 @@
+# kubectl apply -f 05.resource.yaml
+# kubectl get pods
+# kubectl describe pod resources
+# kubectl delete -f 05.resource.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resources
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      requests: # soft limit
+        cpu: "100m"
+        memory: "128Mi"
+      limits:  # limits should be atleast or more than requests i.e hard limit
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80

@@ -1,0 +1,34 @@
+# kubectl apply -f 02.multi-container.yaml
+# kubectl get pods
+
+# kubectl exec -it multi-nginx -c almalinux -- bash
+# [root@multi-nginx /]# cat /etc/*release
+# AlmaLinux release 9.4 (Seafoam Ocelot)
+# [root@multi-nginx /]# curl localhost
+# <!DOCTYPE html>.....
+
+# 2 containers shareing same storage and network(used in sidecar and proxy)
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-nginx
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  - name: almalinux
+    image: "almalinux:9"
+    command: ["sleep","2000"]
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"

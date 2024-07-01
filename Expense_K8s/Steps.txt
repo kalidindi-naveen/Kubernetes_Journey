@@ -1,0 +1,3 @@
+for i in NS/ DB/ BE/ FE/; do cd $i; kubectl apply -f manifest.yaml; cd ..; done
+
+for i in FE/ BE/ DB/ NS/; do cd $i; kubectl delete -f manifest.yaml; cd ..; done

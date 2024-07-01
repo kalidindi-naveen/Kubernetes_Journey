@@ -1,0 +1,24 @@
+# kubectl apply -f 10.pod-secrect.yaml
+# kubectl get pods
+# kubectl exec -it secret-test -- bash
+# kubectl delete -f 10.pod-secrect.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-test
+  labels:
+    name: secret-test
+spec:
+  containers:
+  - name: secret-test
+    image: nginx
+    envFrom:
+    - secretRef:
+        name: pod-secret
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80

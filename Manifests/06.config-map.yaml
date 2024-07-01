@@ -1,0 +1,11 @@
+# kubectl apply -f 06.config-map.yaml
+# kubectl get configmap
+# kubectl delete -f 06.config-map.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: step-into-cloud
+data:
+  course: "DevOps with AWS"
+  trainer: "NK"

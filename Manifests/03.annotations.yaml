@@ -1,0 +1,24 @@
+# kubectl apply -f 03.annotations.yaml
+# kubectl get pods
+# kubectl describe pod annotations
+# kubectl delete -f 03.annotations.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: anotations
+  labels:
+    name: annotations
+  annotations:
+    kubernetes.io/created-by: 'NK'
+    jenkins.build.url: 'https://jenkins.step-into-iot.cloud/expense/job/backend/54'
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
