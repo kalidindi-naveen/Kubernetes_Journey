@@ -1,3 +1,22 @@
 for i in NS/ DB/ BE/ FE/; do cd $i; kubectl apply -f manifest.yaml; cd ..; done
 
 for i in FE/ BE/ DB/ NS/; do cd $i; kubectl delete -f manifest.yaml; cd ..; done
+
+if you are using cluster from docker desktop
+>kubectl port-forward <pod-name> 8080:80
+
+Debug??
+-------
+FROM almalinux:9
+RUN yum install telnet -y
+CMD [ "sleep","20000" ]
+
+docker build -t naveen2809/debug:1.0.0 .
+docker login
+docker push naveen2809/debug:1.0.0
+----
+kubectl exec -it debug -- sh
+telnet db-svc 3306
+telnet be-svc 8080
+telnet fe-svc 80
+----
