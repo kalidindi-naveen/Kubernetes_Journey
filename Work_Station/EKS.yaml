@@ -13,5 +13,3 @@ managedNodeGroups:
 - name: expense
   desiredCapacity: 3
   spot: true
-  ssh:
-    publicKeyName: Expense

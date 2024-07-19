@@ -20,3 +20,19 @@ telnet db-svc 3306
 telnet be-svc 8080
 telnet fe-svc 80
 ----
+
+Configure Kubens
+-----------------
+https://github.com/ahmetb/kubectx
+
+sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+
+kubens expense
+
+----
+system ports in Linux 0-1023
+if Docker image configured with non root user then it cant claim system port range
+ex: if fe was configured with expense user then we can use claim system port 80, so configure nginx to use 8080 as Listner
+-----
