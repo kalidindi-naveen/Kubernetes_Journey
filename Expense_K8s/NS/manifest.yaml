@@ -1,6 +1,6 @@
-# kubectl apply -f namespace.yaml
+# kubectl apply -f manifest.yaml
 # kubectl get ns
-# kubectl delete -f namespace.yaml
+# kubectl apply -f manifest.yaml
 
 apiVersion: v1
 kind: Namespace

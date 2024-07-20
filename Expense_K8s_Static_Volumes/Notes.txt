@@ -1,0 +1,24 @@
+Static Provisioning
+--------------------
+1. Create EBS Volume (same zone where servers are present)
+2. Install EBS Drivers
+```
+https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md
+
+kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.32"
+
+kubectl get ns 
+kubectl get pods -n kube-system
+```
+3. Nodes Should have access to connect to EBS 
+```
+Modify IAM Role of EC2 Instances to access EBS -- Attach this Policy (AmazonEBSCSIDriverPolicy)
+```
+
+How POD's access EBS??
+----------------------
+with help of PV (Persistent Volume)
+
+PV will Map EBS Volume inside kubernetes as Resource
+
+with help of PVC pods can use it
