@@ -22,3 +22,11 @@ with help of PV (Persistent Volume)
 PV will Map EBS Volume inside kubernetes as Resource
 
 with help of PVC pods can use it
+
+
+Dynamic Provisioning
+--------------------
+with help of Storage class (SC)
+    No need of PV 
+
+will claim volume from SC
