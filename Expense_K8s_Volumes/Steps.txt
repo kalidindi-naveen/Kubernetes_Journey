@@ -1,0 +1,9 @@
+Steps:
+------
+1.Install EBS Drivers
+2.Provide IAM Policy to Role Assigned to Nodes (AmazonEBSCSIDriverPolicy)
+3. Create Expense Storage Class
+We are using Volumes only for Database only.
+4. Inform Application Team that Storage Class is created
+
+Note: DB will give different results because each POD has its own Storage(pv,pvc) its better to go with Vendor Managed Services (AWS RDS)
