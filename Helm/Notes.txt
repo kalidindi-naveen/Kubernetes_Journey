@@ -1,0 +1,5 @@
+helm install nginx .
+helm uninstall nginx
+helm upgrade nginx .
+helm status
+helm history

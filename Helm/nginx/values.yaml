@@ -1,0 +1,4 @@
+configmap:
+  port: 80
+deployment:
+  replicas: 2

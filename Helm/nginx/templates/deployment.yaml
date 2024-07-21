@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fe
+  namespace: expense
+  # match with service
+  labels:
+    name: fe
+    tier: App
+    owner: Naveen
+spec:
+  replicas:  {{.Values.deployment.replicas}}
+  selector:
+    # need t match with template
+    matchLabels:
+      name: fe
+      tier: App
+      owner: Naveen  
+  template:
+    metadata:
+      labels:
+        name: fe
+        tier: App
+        owner: Naveen
+    spec:
+      containers:
+      - name: fe
+        image: nginx
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          readOnly: true
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: fe-config
+            items:
+            - key: nginx.conf
+              path: nginx.conf
