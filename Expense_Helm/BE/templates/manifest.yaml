@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: be-config
+  namespace: {{.Values.namespace}}
+data:
+  DB_HOST: {{.Values.db_svc.name}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be
+  namespace: {{.Values.namespace}}
+  # match with service
+  labels:
+    name: be
+    tier: App
+    owner: Naveen
+spec:
+  replicas: {{.Values.image.replicas}}
+  selector:
+    # need t match with template
+    matchLabels:
+      name: be
+      tier: App
+      owner: Naveen 
+  template:
+    metadata:
+      labels:
+        name: be
+        tier: App
+        owner: Naveen
+    spec:
+      containers:
+      - name: be
+        image: naveen2809/expense-be:{{.Values.image.version}}
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: be-config
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: {{.Values.image.port}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{.Values.namespace}}
+  name: {{.Values.svc.name}}
+spec:
+  selector:
+    name: be
+    tier: App
+    owner: Naveen
+  ports:
+  - port: {{.Values.image.port}}
+    targetPort: {{.Values.image.port}}

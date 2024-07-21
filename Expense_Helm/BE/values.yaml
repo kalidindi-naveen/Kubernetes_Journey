@@ -1,0 +1,12 @@
+namespace: expense
+
+image:
+  replicas: 1
+  version: 1.0.0
+  port: 8080
+
+svc:
+  name: be-svc
+
+db_svc:
+  name: db-svc

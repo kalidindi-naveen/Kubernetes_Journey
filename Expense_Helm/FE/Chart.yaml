@@ -1,0 +1,4 @@
+apiVersion: v1
+name: fe
+version: 0.0.1
+description: FE Helm

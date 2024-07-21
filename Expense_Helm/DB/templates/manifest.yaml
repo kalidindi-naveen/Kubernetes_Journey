@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: {{.Values.namespace}}
+  # match with service
+  labels:
+    name: db
+    tier: App
+    owner: Naveen
+spec:
+  replicas: {{.Values.image.replicas}}
+  selector:
+    # need t match with template
+    matchLabels:
+      name: db
+      tier: App
+      owner: Naveen
+  template:
+    metadata:
+      labels:
+        name: db
+        tier: App
+        owner: Naveen
+    spec:
+      containers:
+      - name: db
+        image: naveen2809/expense-db:{{.Values.image.version}}
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{.Values.namespace}}
+  name: {{.Values.svc.name}}
+spec:
+  selector:
+    name: db
+    tier: App
+    owner: Naveen
+  ports:
+  - port: {{.Values.image.port}}
+    targetPort: {{.Values.image.port}}
