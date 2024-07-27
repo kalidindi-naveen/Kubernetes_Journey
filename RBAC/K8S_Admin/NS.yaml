@@ -1,0 +1,11 @@
+# kubectl apply -f NS.yaml
+# kubectl get ns
+# kubectl delete -f NS.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expense
+  labels:
+    name: expense
+    env: dev
