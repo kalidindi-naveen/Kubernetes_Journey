@@ -1,0 +1,6 @@
+kubectl label nodes ip-192-168-24-118.ec2.internal project=expense
+node/ip-192-168-24-118.ec2.internal labeled
+
+kubectl label nodes ip-192-168-24-118.ec2.internal project-
+node/ip-192-168-24-118.ec2.internal unlabeled
+---x---
