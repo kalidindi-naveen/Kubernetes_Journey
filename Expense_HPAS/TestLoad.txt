@@ -1,0 +1,5 @@
+Test Load Using Apache Bench
+
+yum install httpd-tools -y
+
+ab -n 10000 -c 1000 "http://affb649d68aeb49eaab946b37add3d99-560986318.us-east-1.elb.amazonaws.com/#/"
