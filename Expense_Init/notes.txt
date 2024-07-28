@@ -1,0 +1,12 @@
+Init containers
+--------------
+1. Init containers run before the main containers run. It can be one or many
+2. Init containers should be completed one by one.
+3. If init containers fail main containers will not run.
+Init containers always run to completion.
+4. to wait until other applications are ready, to prepare some configuration for main container.
+
+DB and backend both are started at a time. backend is ready before DB started successfully. backend is getting failed because no connection to DB.
+
+we can have init container for backend. so before backend starts init container should be checking if DB is ready or not.
+

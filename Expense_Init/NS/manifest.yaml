@@ -1,0 +1,11 @@
+# kubectl apply -f manifest.yaml
+# kubectl get ns
+# kubectl apply -f manifest.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expense
+  labels:
+    name: expense
+    env: dev

@@ -1,0 +1,11 @@
+Container-Best-Practice's
+-------------------------
+1. without root user
+2. use volumes
+3. use official images
+4. use small images, dont keep unnecessary installations
+5. use multi stage builds
+6. use health checks
+7. use custom network
+8. reduce imaging layers
+9. use autoscaling
