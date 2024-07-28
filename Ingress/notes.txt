@@ -1,0 +1,39 @@
+Installation 4 Steps:
+---------------------
+https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/deploy/installation/
+
+1. 
+eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster expense --approve
+
+2.
+curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.8.1/docs/install/iam_policy.json
+
+3.
+aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam-policy.json
+
+4.
+eksctl create iamserviceaccount --cluster=expense --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::381492110526:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --region us-east-1 --approve
+
+5.
+helm repo add eks https://aws.github.io/eks-charts
+
+6.
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=expense --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
+
+-- if uninstall it helm uninstall aws-load-balancer-controller -n kube-system
+
+7.
+kubectl get pods -n kube-system
+NAME                                          READY   STATUS    RESTARTS   AGE
+aws-load-balancer-controller-9bfd5785-ncc5q   1/1     Running   0          24s
+aws-load-balancer-controller-9bfd5785-x49h2   1/1     Running   0          24s
+
+Ex: 2 Applications
+------------------
+APP1
+APP2
+
+Host Based Routing -- create routes inside route53
+--------------------------------------------------
+- app1.step-into-iot.cloud
+- app2.step-into-iot.cloud
