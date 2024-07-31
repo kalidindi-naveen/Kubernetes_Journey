@@ -1,0 +1,14 @@
+readiness probe
+-------------------
+we can define when our container is ready.
+for backend we can say when port 8080 opened, we can say
+it is ready
+
+liveness probe
+-----------------
+health check
+once container is ready, then only we can do health check
+auto healing
+
+liveness probe will happen frequently, whenever it finds
+something is wrong it will auto restart the container.
